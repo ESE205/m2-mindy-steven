@@ -3,11 +3,6 @@ import time
 from time import sleep
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-import sys
-
-
-DEBUG = False
-if (len(sys.argv)> 1): DEBUG = True if (int(sys.argv[1])> 0) else False
 
 switchPin = 13
 ledPin = 11
@@ -33,16 +28,17 @@ start_time = time.time()
 
 
 #DEBUG = False
-#if '--debug' in sys.argv:
-   #DEBUG = TRUE
+#if '-debug' in sys.argv:
+   DEBUG = TRUE
+
 input_state = GPIO.input(switchPin)
 while (time.time() - start_time) < timeLength:
-   with open(fileName, "a") as file:
+   with open(fileName, "w") as file:
          input_state = GPIO.input(switchPin)
          delta = time.time() - start_time
          file.write(f"{delta}\t{input_state}\n")
-         if DEBUG:
-            print(f'LED is on: {input_state}\n')
+         #if DEBUG:
+          #  print(f'LED is on: {input_state}\n')
          if input_state == GPIO.HIGH:
             GPIO.output(ledPin, GPIO.HIGH)
             sleep(.5/rate)

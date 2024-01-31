@@ -3,16 +3,8 @@ from time import sleep     # Import the sleep from time module
 GPIO.setwarnings(False)    # Ignore warning for now
 GPIO.setmode(GPIO.BOARD)   # Use physical pin numbering
 
-
-
-try:
-   ITER_COUNT = float(input("How many blinks"))
-except ValueError:
-   print("Invalid input. Using default value of 5")
-   ITER_COUNT = 5
-
-
-
+ITER_COUNT = float(input("How many blinks"))
+  
 pin1 = 11
 pin2 = 13
 
@@ -30,9 +22,8 @@ try:
             GPIO.output(pin1, GPIO.HIGH) # Turn on
             sleep(1)                     # Sleep for 1 second
             GPIO.output(pin1, GPIO.LOW)  # Turn off
-            sleep(1)                     # Sleep for 1 second
-         if ITER_COUNT == 0:
-            break
+            sleep(1)
+                                 # Sleep for 1 second
 except:
    print("error")
 GPIO.cleanup()
